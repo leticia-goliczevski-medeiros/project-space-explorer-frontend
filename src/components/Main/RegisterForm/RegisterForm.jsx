@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { ErrorMessage } from "@hookform/error-message";
 import validator from "validator";
 
-function LoginForm() {
+function RegisterForm() {
   const { register, handleSubmit, formState: { errors } } = useForm({mode: "onChange"});
 
   function onSubmit() {
@@ -12,7 +12,7 @@ function LoginForm() {
 
   return (
     <form 
-    name='login-form'
+    name='register-form'
     onSubmit={handleSubmit(onSubmit)}
     className="form"
     noValidate>
@@ -52,12 +52,12 @@ function LoginForm() {
         className="form__submit-button"
         type="submit"
       >
-        Log in
+        Sign Up
       </button>
 
-      <p className='form__text'>Not a member yet? <Link to="/signup" className='form__link' >Sign up here!</Link> </p>
+      <p className='form__text'>Already a member? <Link to="/signin" className='form__link' >Log in here!</Link> </p>
     </form> 
   )
 }
 
-export default LoginForm;
+export default RegisterForm;
