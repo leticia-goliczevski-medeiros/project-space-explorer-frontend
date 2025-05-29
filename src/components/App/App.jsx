@@ -7,6 +7,7 @@ import Register from '../../pages/Register.jsx';
 import Login from '../../pages/Login.jsx';
 import MyGallery from '../../pages/MyGallery.jsx';
 import Explore from '../../pages/Explore.jsx';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.jsx';
 
 function App() {
 
@@ -24,10 +25,14 @@ function App() {
             <Login />
           } />
           <Route path="/mygallery" element={
-            <MyGallery />
+            <ProtectedRoute>
+              <MyGallery />
+            </ProtectedRoute>
           } />
           <Route path="/explore" element={
-            <Explore />
+            <ProtectedRoute>
+              <Explore />
+            </ProtectedRoute>
           } />
         </Routes>
       </div>
