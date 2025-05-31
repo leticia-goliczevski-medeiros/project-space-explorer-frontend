@@ -9,7 +9,7 @@ function MyGallery() {
 
   return (
     <MainLayout>
-      <Gallery />
+      <Gallery array={myCards}/>
 
       {popup && (
         <Popup>
