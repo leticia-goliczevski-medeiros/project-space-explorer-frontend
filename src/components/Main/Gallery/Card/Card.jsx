@@ -1,8 +1,18 @@
+import { useContext } from 'react';
+
 import starIcon from '../../../../images/star-icon.png';
 import starIconActive from '../../../../images/star-icon-active.png';
 
+import ImagePopup from '../../Popup/ImagePopup/ImagePopup';
+
+import PopupContext from '../../../../contexts/PopupContext';
+
 function Card({card}) {
-   const thumbnail = card.media_type === 'video' ? card.thumbnail_url : card.url;
+  const { setPopup } = useContext(PopupContext);
+
+  const thumbnail = card.media_type === 'video' ? card.thumbnail_url : card.url;
+
+  const imagePopup = { children: <ImagePopup card={card} />};
 
   return (
     <li className="gallery__card" >
@@ -10,6 +20,7 @@ function Card({card}) {
         className='gallery__card-image'
         src={thumbnail}
         alt={card.title}
+        onClick={()=> setPopup(imagePopup)}
       />
       <img
         className="gallery__card-star"
