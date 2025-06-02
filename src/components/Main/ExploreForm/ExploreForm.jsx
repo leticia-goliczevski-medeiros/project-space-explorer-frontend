@@ -8,17 +8,25 @@ import { api } from '../../../utils/APODApi.js';
 import PhotosContext from "../../../contexts/PhotosContext.js";
 
 function ExploreForm() {
-  const { setPhotos } = useContext(PhotosContext);
+  const { setPhotos, setIsLoadingPhotos, setError } = useContext(PhotosContext);
 
   const { register, handleSubmit, formState: { errors } } = useForm({mode: "onChange"});
 
   function onSubmit(data) {
     const { startDate, endDate } = data;
+    setIsLoadingPhotos(true);
+    setError('');
+
     api.getAllPhotos(startDate, endDate)
       .then((photos)=> {
         setPhotos(photos);
+        localStorage.setItem('allPhotos', JSON.stringify(photos));
       })
-      .catch((error) => console.error(error))
+      .catch((error) => {
+        console.error(error);
+        setError("Sorry, something went wrong with the request. There might be a connection problem or the server might be down. Please try again later.");
+      })
+      .finally(() => setIsLoadingPhotos(false));
   };
 
   return (

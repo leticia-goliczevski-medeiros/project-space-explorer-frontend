@@ -5,7 +5,7 @@ function Gallery({array}) {
     <section className="gallery">
       <ul className="gallery__cards">
         {array.map(card=> (
-          <Card card={card} key={card._id}/>
+          <Card card={card} key={card.date}/>
         ))}
       </ul>
     </section>
