@@ -1,3 +1,4 @@
+import './ExploreForm.css';
 import { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
@@ -30,7 +31,7 @@ function ExploreForm() {
   };
 
   return (
-    <>
+    <section className="explore">
       <h2 className='explore__title'>Browse by date:</h2>
       <form 
         name='explore-form'
@@ -38,33 +39,35 @@ function ExploreForm() {
         className="explore__form"
         noValidate>
         
-        <div className="explore__inputs">
-          <label className='explore__label'>
-            Start date:
+       
+          <div className="explore__input-info">
+            <label className='explore__label' for='start-date' >Start date:</label>
             <input
-              type="date"
-              {...register('startDate', {
-                required: 'This field is required.',
-                validate: (v) => validator.isDate(v) || 'You must enter a valid date.'
-              })}
-            />
-          </label>
-          
-          <ErrorMessage errors={errors} name="startDate" render={({ message }) => <p className='explore__input-error explore__input-error_start-date'>{message}</p>} />
+                className='explore__input'
+                type="date"
+                id="start-date"
+                {...register('startDate', {
+                  required: 'This field is required.',
+                  validate: (v) => validator.isDate(v) || 'You must enter a valid date.'
+                })}
+              />
+            
+            <ErrorMessage errors={errors} name="startDate" render={({ message }) => <p className='explore__input-error explore__input-error_start-date'>{message}</p>} />
+          </div>
 
-          <label>
-            End date:
+          <div className="explore__input-info">
+            <label className='explore__label' for='end-date' >End date:</label>
             <input
-              type="date"
-              {...register('endDate', {
-                required: 'This field is required.',
-                validate: (v) => validator.isDate(v) || 'You must enter a valid date.'
-              })}
-            />
-          </label>
-
-          <ErrorMessage errors={errors} name="endDate" render={({ message }) => <p className='explore__input-error explore__input-error_end-date'>{message}</p>} />
-        </div>
+                className='explore__input'
+                type="date"
+                id='end-date'
+                {...register('endDate', {
+                  required: 'This field is required.',
+                  validate: (v) => validator.isDate(v) || 'You must enter a valid date.'
+                })}
+              />
+            <ErrorMessage errors={errors} name="endDate" render={({ message }) => <p className='explore__input-error explore__input-error_end-date'>{message}</p>} />
+          </div>
 
         <button
           className="explore__submit-button"
@@ -73,7 +76,7 @@ function ExploreForm() {
           Search
         </button>
       </form> 
-    </>
+    </section>
   )
 }
 

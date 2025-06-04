@@ -25,9 +25,7 @@ function Explore() {
 
   return (
     <MainLayout>
-      <section className="explore">
-        <ExploreForm />
-      </section>
+      <ExploreForm />
 
       {isLoadingPhotos && <p className="gallery__search-status">Loading...</p>}
       {!isLoadingPhotos && error && <p className="gallery__search-status">{error}</p>}

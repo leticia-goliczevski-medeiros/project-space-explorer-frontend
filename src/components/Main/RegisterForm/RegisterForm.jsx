@@ -1,3 +1,4 @@
+import './RegisterForm.css';
 import { Link } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -17,7 +18,7 @@ function RegisterForm() {
     className="form"
     noValidate>
 
-      <h2 className='form__title'>Entrar</h2>
+      <h2 className='form__title'>Create an Account</h2>
       
       <div className="form__inputs">
         <input
@@ -42,7 +43,7 @@ function RegisterForm() {
           })} 
           className="form__input"
           type="password"
-          placeholder="Senha"
+          placeholder="Password"
         />
 
         <ErrorMessage errors={errors} name="password" render={({ message }) => <p className='form__input-error form__input-error_password'>{message}</p>} />

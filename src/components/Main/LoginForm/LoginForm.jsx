@@ -1,3 +1,4 @@
+import './LoginForm.css';
 import { Link } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -12,12 +13,12 @@ function LoginForm() {
 
   return (
     <form 
-    name='login-form'
-    onSubmit={handleSubmit(onSubmit)}
-    className="form"
-    noValidate>
+      name='login-form'
+      onSubmit={handleSubmit(onSubmit)}
+      className="form"
+      noValidate>
 
-      <h2 className='form__title'>Entrar</h2>
+      <h2 className='form__title'>Log In to Your Account</h2>
       
       <div className="form__inputs">
         <input
@@ -42,7 +43,7 @@ function LoginForm() {
           })} 
           className="form__input"
           type="password"
-          placeholder="Senha"
+          placeholder="Password"
         />
 
         <ErrorMessage errors={errors} name="password" render={({ message }) => <p className='form__input-error form__input-error_password'>{message}</p>} />
