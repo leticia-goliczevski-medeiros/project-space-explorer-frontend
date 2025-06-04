@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import MainLayout from "../layouts/MainLayout";
 import Gallery from "../components/Main/Gallery/Gallery";
 import Popup from "../components/Main/Popup/Popup";
@@ -9,7 +11,7 @@ function MyGallery() {
 
   return (
     <MainLayout>
-      <Gallery array={myCards}/>
+      {/* <Gallery array={myCards}/> */}
 
       {popup && (
         <Popup>

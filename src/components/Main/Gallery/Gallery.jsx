@@ -1,3 +1,4 @@
+import './Gallery.css';
 import Card from './Card/Card.jsx';
 
 function Gallery({array}) {

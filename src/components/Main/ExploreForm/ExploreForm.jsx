@@ -41,7 +41,7 @@ function ExploreForm() {
         
        
           <div className="explore__input-info">
-            <label className='explore__label' for='start-date' >Start date:</label>
+            <label className='explore__label' htmlFor='start-date' >Start date:</label>
             <input
                 className='explore__input'
                 type="date"
@@ -56,7 +56,7 @@ function ExploreForm() {
           </div>
 
           <div className="explore__input-info">
-            <label className='explore__label' for='end-date' >End date:</label>
+            <label className='explore__label' htmlFor='end-date' >End date:</label>
             <input
                 className='explore__input'
                 type="date"
