@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 
 import MainLayout from "../layouts/MainLayout";
 import ExploreForm from "../components/Main/exploreForm/exploreForm.jsx";
+import ExploreStatus from "../components/Main/ExploreStatus/ExploreStatus.jsx";
 import Gallery from '../components/Main/Gallery/Gallery.jsx';
 
 import PhotosContext from "../contexts/PhotosContext.js";
@@ -27,9 +28,8 @@ function Explore() {
     <MainLayout>
       <ExploreForm />
 
-      {isLoadingPhotos && <p className="gallery__search-status">Loading...</p>}
-      {!isLoadingPhotos && error && <p className="gallery__search-status">{error}</p>}
-      {!isLoadingPhotos && !error && photos.length === 0 && <p className="gallery__search-status">Sorry, nothing was found.</p>}
+      <ExploreStatus />
+      
       
       {!isLoadingPhotos && !error && photos.length > 0 && (
         <>
