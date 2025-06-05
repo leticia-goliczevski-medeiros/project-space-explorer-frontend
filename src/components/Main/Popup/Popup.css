@@ -1,0 +1,73 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+.popup__container {
+  background-color: rgb(41, 41, 41);
+  max-width: 95vw;
+  max-height: 95vh;
+  overflow-y: auto;
+  border-radius: 25px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.popup__close-icon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 4;
+  cursor: pointer;
+}
+.popup__close-icon:hover {
+  opacity: 0.6;
+}
+.popup__content {
+  max-width: 80vw;
+  max-height: 80vh;
+}
+.popup__media {
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 30px;
+  display: block;
+  border-radius: 20px;
+}
+.popup__card-star {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.popup__card-star:hover {
+  opacity: 0.6;
+}
+.popup__title {
+  margin: 0 0 30px;
+  font-family: "Agrandir Grand Light", Arial, sans-serif;
+  font-size: 32px;
+  line-height: 1.22;
+  letter-spacing: 2px;
+}
+.popup__paragraph {
+  margin: 0;
+  padding: 0 0 30px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 3px;
+  text-align: justify;
+}

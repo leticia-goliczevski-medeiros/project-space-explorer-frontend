@@ -1,3 +1,4 @@
+import './Popup.css';
 import { useContext } from 'react';
 
 import closeIcon from '../../../images/close-icon.png';

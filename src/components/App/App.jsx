@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Home from '../../pages/Home.jsx';
@@ -8,8 +8,12 @@ import Login from '../../pages/Login.jsx';
 import MyGallery from '../../pages/MyGallery.jsx';
 import Explore from '../../pages/Explore.jsx';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.jsx';
+import Popup from '../Main/Popup/Popup.jsx';
+
+import PopupContext from '../../contexts/PopupContext.js';
 
 function App() {
+  const { popup } = useContext(PopupContext);
 
   return (
     <div className="App">
@@ -35,6 +39,8 @@ function App() {
             </ProtectedRoute>
           } />
         </Routes>
+
+        {popup && <Popup>{popup.children}</Popup>}
       </div>
     </div>
   )
