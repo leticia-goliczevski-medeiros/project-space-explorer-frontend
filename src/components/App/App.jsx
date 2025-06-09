@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Home from '../../pages/Home.jsx';
@@ -11,9 +11,16 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.jsx';
 import Popup from '../Main/Popup/Popup.jsx';
 
 import PopupContext from '../../contexts/PopupContext.js';
+import RegistrationPopup from '../Main/Popup/RegistrationPopup/RegistrationPopup.jsx';
+import RegistrationErrorPopup from '../Main/Popup/RegistrationErrorPopup/RegistrationErrorPopup.jsx';
 
 function App() {
-  const { popup } = useContext(PopupContext);
+  const { popup, setPopup } = useContext(PopupContext);
+
+  // useEffect(()=> {
+  //   let registrationPopup = {children: <RegistrationPopup />, registration: true}
+  //   setPopup(registrationPopup);
+  // }, [setPopup])
 
   return (
     <div className="App">

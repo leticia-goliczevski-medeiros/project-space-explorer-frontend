@@ -6,11 +6,11 @@ import closeIcon from '../../../images/close-icon.png';
 import PopupContext from '../../../contexts/PopupContext';
 
 function Popup({children}) {
-  const { setPopup } = useContext(PopupContext);
+  const { popup, setPopup } = useContext(PopupContext);
   
   return (
     <section className="popup">
-      <div className="popup__container">
+      <div className={popup.registration? "popup__container popup__container_registration" : "popup__container"}>
         <img
           className="popup__close-icon"
           src={closeIcon}

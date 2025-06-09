@@ -21,6 +21,16 @@
   flex-direction: column;
   position: relative;
 }
+.popup__container_registration {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 430px;
+  /* background-color: #ffffff; */
+  padding: 34px 36px 37px 36px;
+  border-radius: 10px;
+}
 .popup__close-icon {
   width: 40px;
   height: 40px;
@@ -43,6 +53,12 @@
   margin-bottom: 30px;
   display: block;
   border-radius: 20px;
+}
+.popup__registration-image {
+  margin: 37px auto 32px;
+  display: block;
+  width: 120px;
+  height: 120px;
 }
 .popup__card-star {
   position: absolute;
