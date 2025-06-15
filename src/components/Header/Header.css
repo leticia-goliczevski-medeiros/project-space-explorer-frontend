@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding-top: 45px;
   padding-bottom: 38px;
-  border-bottom: 1px solid #545454;
+  position: relative;
 }
 .header__navbar {
   display: flex;
@@ -15,6 +15,7 @@
   line-height: 1.22;
   color: #fff;
   text-decoration: none;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 .header__links {
   display: flex;
@@ -29,6 +30,8 @@
   row-gap: 14px;
   align-items: flex-end;
   padding-top: 10px;
+  position: absolute;
+  right: 0;
 }
 .header__navlink {
   font-family: "Agrandir Grand Light", Arial, sans-serif;
@@ -36,6 +39,7 @@
   line-height: 1.22;
   color: #fff;
   text-decoration: none;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 .header__navlink:hover {
   opacity: 0.75;
@@ -49,6 +53,10 @@
 }
 .header__menu-button:hover {
   opacity: 0.75;
+}
+.header__menu-icon {
+  width: 32px;
+  height: 32px;
 }
 
 @media screen and (max-width: 1024px) {

@@ -5,7 +5,7 @@ import PopupContext from '../../contexts/PopupContext.js'
 import PhotosContext from '../../contexts/PhotosContext.js';
 
 function AppProviders({children}) {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [popup, setPopup] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [isLoadingPhotos, setIsLoadingPhotos] = useState(false);

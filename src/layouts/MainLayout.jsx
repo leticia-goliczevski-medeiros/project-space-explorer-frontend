@@ -17,7 +17,8 @@ function MainLayout({ children }){
   return (
     <>
     {showWelcomeSection &&
-      <video
+      <div className="welcome-video-wrapper">
+         <video
           autoPlay
           muted
           loop
@@ -26,6 +27,7 @@ function MainLayout({ children }){
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
+      </div>
     }
       <Header />
         {children} 
