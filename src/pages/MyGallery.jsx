@@ -8,10 +8,11 @@ import PopupContext from "../contexts/PopupContext";
 
 function MyGallery() {
   const {popup} = useContext(PopupContext);
+  const myCards = []
 
   return (
     <MainLayout>
-      {/* <Gallery array={myCards}/> */}
+      <Gallery array={myCards}/>
 
       {popup && (
         <Popup>

@@ -4,11 +4,15 @@ import Card from './Card/Card.jsx';
 function Gallery({array}) {
   return (
     <section className="gallery">
-      <ul className="gallery__cards">
-        {array.map(card=> (
-          <Card card={card} key={card.date}/>
-        ))}
-      </ul>
+      {array.length === 0? 
+        <p className='gallery__message'>No photos here yet. Check out our Explore page!</p>
+      :
+        <ul className="gallery__cards">
+          {array.map(card=> (
+            <Card card={card} key={card.date}/>
+          ))}
+        </ul>
+      }
     </section>
   )
 }

@@ -1,7 +1,7 @@
 .explore {
   max-width: 880px;
   margin: 0 auto;
-  padding-top: 40px;
+  padding-top: 80px;
 }
 .explore__title {
   font-family: "Agrandir Grand Light", Arial, sans-serif;
@@ -64,7 +64,6 @@
 @media screen and (max-width: 1024px) {
   .explore {
     max-width: 80vw;
-    padding-top: 28px;
   }
   .explore__title {
     font-size: 28px;
