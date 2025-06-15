@@ -27,9 +27,8 @@
 .header__links_mobile {
   display: none;
   flex-direction: column;
-  row-gap: 14px;
+  row-gap: 12px;
   align-items: flex-end;
-  padding-top: 10px;
   position: absolute;
   right: 0;
 }

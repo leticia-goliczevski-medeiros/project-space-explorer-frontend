@@ -1,7 +1,7 @@
 .picture-of-the-day {
   max-width: 880px;
   margin: 0 auto;
-  padding-top: 45px;
+  padding-top: 80px;
   padding-bottom: 38px;
 }
 .picture-of-the-day__title {
@@ -26,6 +26,7 @@
   right: 12px;
   width: 40px;
   height: 40px;
+  cursor: pointer;
 }
 .picture-of-the-day__star-icon:hover {
   opacity: 0.6;

@@ -11,7 +11,7 @@ function Explore() {
   const { photos, setPhotos, isLoadingPhotos, error } = useContext(PhotosContext);
   const [displayedPhotos, setDisplayedPhotos] = useState(3);
 
-    useEffect(() => {
+  useEffect(() => {
     const allPhotos = localStorage.getItem('allPhotos');
     if (allPhotos) {
       setPhotos(JSON.parse(allPhotos));

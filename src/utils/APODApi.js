@@ -10,6 +10,12 @@ class APODApi {
 
     return this._makeRequest(endpoint)
   }
+
+  getCurrentPhoto() {
+    const endpoint = '';
+
+    return this._makeRequest(endpoint)
+  }
 }
 
 export const api = new APODApi({
