@@ -13,7 +13,7 @@ function Home() {
     <MainLayout>
       {!isLoggedIn &&  <Welcome />}
 
-      {/* <PictureOfTheDay /> */}
+      <PictureOfTheDay />
     </MainLayout>
   )
 }
