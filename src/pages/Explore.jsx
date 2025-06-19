@@ -2,13 +2,13 @@ import { useState, useContext, useEffect } from "react";
 
 import MainLayout from "../layouts/MainLayout";
 import ExploreForm from "../components/Main/exploreForm/exploreForm.jsx";
-import ExploreStatus from "../components/Main/ExploreStatus/ExploreStatus.jsx";
+import SearchStatus from "../components/Main/SearchStatus/SearchStatus.jsx";
 import Gallery from '../components/Main/Gallery/Gallery.jsx';
 
 import PhotosContext from "../contexts/PhotosContext.js";
 
 function Explore() {
-  const { photos, setPhotos, isLoadingPhotos, error } = useContext(PhotosContext);
+  const { photos, setPhotos, isLoading, error } = useContext(PhotosContext);
   const [displayedPhotos, setDisplayedPhotos] = useState(3);
 
   useEffect(() => {
@@ -28,10 +28,10 @@ function Explore() {
     <MainLayout>
       <ExploreForm />
 
-      <ExploreStatus />
+      <SearchStatus isLoading={isLoading} error={error} noResults={!isLoading && !error && photos.length === 0} />
       
       
-      {!isLoadingPhotos && !error && photos.length > 0 && (
+      {!isLoading && !error && photos.length > 0 && (
         <>
           <Gallery array={photos.slice(0, displayedPhotos)} />
           {hasMore && (

@@ -1,4 +1,4 @@
-const apiKey = 'DEMO_KEY';
+const apiKey = 'Qx1rH2G1nuyxHRiDMTb6W3DSIOzEPeOWX6elRrvN';
 
 class APODApi {
   constructor({ makeRequest }) {
