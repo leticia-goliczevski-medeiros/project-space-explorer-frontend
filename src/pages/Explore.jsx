@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 
 import MainLayout from "../layouts/MainLayout";
-import ExploreForm from "../components/Main/exploreForm/exploreForm.jsx";
+import ExploreForm from "../components/Main/ExploreForm/ExploreForm.jsx";
 import SearchStatus from "../components/Main/SearchStatus/SearchStatus.jsx";
 import Gallery from '../components/Main/Gallery/Gallery.jsx';
 
