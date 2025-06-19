@@ -1,0 +1,97 @@
+.explore {
+  max-width: 880px;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+.explore__title {
+  font-family: "Agrandir Grand Light", Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.14;
+  margin: 0;
+  padding-bottom: 28px;
+}
+.explore__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.explore__input-info {
+  display: flex;
+  align-items: center;
+  padding-bottom: 24px;
+}
+.explore__input {
+  margin: 0 14px;
+  border-radius: 28px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-family: "Agrandir Grand Light", Arial, sans-serif;
+  line-height: 1.22;
+}
+.explore__input:focus {
+  outline: 1px solid #fff;       
+  outline-offset: 4px;           
+}
+.explore__label {
+  font-family: "Agrandir Grand Light", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.22;
+}
+.explore__input-error  {
+  font-family: "Agrandir Grand Light", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.22;
+  margin: 0;
+}
+.explore__submit-button {
+  align-self: flex-start;
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 28px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-family: "Agrandir Grand Light", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.22;
+  color: #fff;
+}
+.explore__submit-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+@media screen and (max-width: 1024px) {
+  .explore {
+    max-width: 80vw;
+  }
+  .explore__title {
+    font-size: 28px;
+    padding-bottom: 24px;
+  }
+  .explore__input {
+    margin: 0 10px;
+  }
+  .explore__label {
+    font-size: 20px;
+  }
+  .explore__submit-button {
+    padding: 8px 20px;
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .explore__title {
+    padding-bottom: 32px;
+  }
+  .explore__input-info {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 12px;
+    padding-bottom: 32px;
+  }
+  .explore__input {
+    margin: 0;
+  }
+}
+

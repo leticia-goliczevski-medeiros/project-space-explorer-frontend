@@ -1,0 +1,27 @@
+@font-face {
+  src: url("./fonts/Inter-Regular.woff2");
+  font-family: "Inter";
+  font-weight: 400;
+}
+@font-face {
+  src: url("./fonts/Inter-Medium.woff2");
+  font-family: "Inter";
+  font-weight: 500;
+}
+@font-face {
+  src: url("./fonts/Inter-Black.woff2");
+  font-family: "Inter";
+  font-weight: 900;
+}
+@font-face {
+  src: url("./fonts/PPAgrandir-GrandHeavy.woff");
+  font-family: "Agrandir Grand Heavy";
+}
+@font-face {
+  src: url("./fonts/PPAgrandir-GrandLight.woff");
+  font-family: "Agrandir Grand Light";
+}
+@font-face {
+  src: url("./fonts/PPAgrandir-WideLight.woff");
+  font-family: "Agrandir Wide Light";
+}

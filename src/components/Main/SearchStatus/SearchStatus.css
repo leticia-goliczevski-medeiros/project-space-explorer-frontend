@@ -1,0 +1,15 @@
+.search-status {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.search-status__paragraph {
+  font-family: "Agrandir Grand Light", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.22;
+}
+
+@media screen and (max-width: 1024px) {
+  .search-status {
+    max-width: 80vw;
+  }
+}
