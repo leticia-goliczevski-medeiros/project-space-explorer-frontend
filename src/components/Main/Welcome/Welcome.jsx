@@ -20,7 +20,7 @@ function Welcome() {
 
       <p className="welcome-section__paragraph">With AstroGallery, every day is a new chance to be amazed by the universe.</p>
 
-      <Link to="/"><p className="welcome-section__link">Start now</p></Link>
+      <Link to="/signin"><p className="welcome-section__link">Start now</p></Link>
     </section>
   )
 }
