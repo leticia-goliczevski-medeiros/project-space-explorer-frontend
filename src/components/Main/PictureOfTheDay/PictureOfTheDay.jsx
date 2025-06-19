@@ -2,7 +2,6 @@ import './PictureOfTheDay.css';
 import { useContext, useState, useEffect } from 'react';
 
 import starIcon from '../../../images/star-icon.png';
-import starIconActive from '../../../images/star-icon-active.png';
 
 import SearchStatus from '../SearchStatus/SearchStatus.jsx';
 
@@ -28,7 +27,7 @@ function PictureOfTheDay() {
         setError(error);
       })
       .finally(()=> setIsLoading(false))
-  }, []);
+  }, [setIsLoading]);
 
   return (
     <section className="picture-of-the-day">

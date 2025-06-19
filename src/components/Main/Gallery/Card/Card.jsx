@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 
 import starIcon from '../../../../images/star-icon.png';
-import starIconActive from '../../../../images/star-icon-active.png';
 
 import ImagePopup from '../../Popup/ImagePopup/ImagePopup';
 
