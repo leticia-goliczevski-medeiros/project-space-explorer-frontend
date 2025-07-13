@@ -29,10 +29,10 @@ export const api = new APODApi({
 
       try {
         const errorData = await res.json();
-        return Promise.reject(errorData.message || `Erro na requisição. ${res.status}`);
+        return Promise.reject(errorData.message || `Request Error. ${res.status}`);
       } catch {
         const errorText = await res.text();
-        return Promise.reject(`Erro na requisição. ${res.status}: ${errorText}`);
+        return Promise.reject(`Request Error. ${res.status}: ${errorText}`);
       }
 
     } catch (error) {

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { ErrorMessage } from "@hookform/error-message";
 import validator from "validator";
 
-import { registerUser } from '../../../utils/MainApi'; 
+import { mainApi } from '../../../utils/MainApi'; 
 
 import RegistrationPopup from '../Popup/RegistrationPopup/RegistrationPopup';
 import RegistrationErrorPopup from '../Popup/RegistrationErrorPopup/RegistrationErrorPopup';
@@ -18,16 +18,7 @@ function RegisterForm() {
   const { register, handleSubmit, formState: { errors } } = useForm({mode: "onChange"});
 
   function handleUserRegister ({password, email}) {
-    registerUser({password, email})
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-
-        return res.json().then((errorData) => {
-          return Promise.reject(errorData.message || `Request error. ${res.status}`)
-        });
-      })
+    mainApi.registerUser({password, email})
       .then(() => {
         const registrationPopup = { children: <RegistrationPopup  />};
 
