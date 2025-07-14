@@ -6,7 +6,10 @@ import PhotosContext from '../../contexts/PhotosContext.js';
 import IsGalleryLoadingContext from '../../contexts/IsGalleryLoadingContext.js';
 
 function AppProviders({children}) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const token = localStorage.getItem('UserIdentifier')
+    return !!token
+  });
   const [popup, setPopup] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [myPhotos, setMyPhotos] = useState([]);
