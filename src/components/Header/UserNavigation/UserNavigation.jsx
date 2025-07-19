@@ -2,15 +2,18 @@ import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import IsLoggedInContext from '../../../contexts/IsLoggedInContext';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
 
 function UserNavigation() {
   const { setIsLoggedIn } = useContext(IsLoggedInContext);
+  const { setCurrentUser } = useContext(CurrentUserContext);
 
   const navigate = useNavigate();
 
   function handleUserLogout() {
     setIsLoggedIn(false);
     localStorage.removeItem("UserIdentifier");
+    setCurrentUser({});
     navigate("/");
   }
 

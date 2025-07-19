@@ -1,17 +1,61 @@
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import starIcon from '../../../../images/star-icon.png';
+import starIconActive from '../../../../images/star-icon-active.png';
 
 import ImagePopup from '../../Popup/ImagePopup/ImagePopup';
 
-import PopupContext from '../../../../contexts/PopupContext';
+import { mainApi } from '../../../../utils/MainApi';
 
-function Card({card}) {
+import PopupContext from '../../../../contexts/PopupContext';
+import CurrentUserContext from '../../../../contexts/CurrentUserContext';
+import PhotosContext from '../../../../contexts/PhotosContext';
+
+function Card({ card }) {
   const { setPopup } = useContext(PopupContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { setMyPhotos } = useContext(PhotosContext);
+  const token = localStorage.getItem('UserIdentifier');
 
   const thumbnail = card.media_type === 'video' ? card.thumbnail_url : card.url;
 
   const imagePopup = { children: <ImagePopup card={card} />};
+
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const liked = currentUser.gallery?.some((item) =>  item.date === card.date);
+    setIsLiked(liked);
+  }, [currentUser, card._id]);
+
+  function handleCardLike() {
+    if (isLiked) {
+      const likedPhoto = currentUser.gallery.find(item => item.date === card.date);
+
+      if (!likedPhoto || !likedPhoto._id) {
+        console.error("Erro: foto curtida não tem _id para remover.");
+        return;
+      }
+
+      mainApi.removeCardLike(likedPhoto._id, token)
+        .then((updatedUser)=> {
+          setCurrentUser(updatedUser);
+          localStorage.setItem("CurrentUser", JSON.stringify(updatedUser));
+          setMyPhotos(updatedUser.gallery);
+          setIsLiked(false);
+        })
+        .catch((error) => console.error(error))
+    } else {
+      mainApi.addCardLike(card, token)
+        .then((updatedUser)=> {
+          setCurrentUser(updatedUser);
+          localStorage.setItem("CurrentUser", JSON.stringify(updatedUser));
+          setMyPhotos(updatedUser.gallery);
+          setIsLiked(true);
+        })
+        .catch((error) => console.error(error))
+    }
+  }
 
   return (
     <li className="gallery__card" >
@@ -23,8 +67,9 @@ function Card({card}) {
       />
       <img
         className="gallery__card-star"
-        src={starIcon}
+        src={isLiked? starIconActive : starIcon }
         alt="Star icon."
+        onClick={handleCardLike}
       /> 
     </li>
   )

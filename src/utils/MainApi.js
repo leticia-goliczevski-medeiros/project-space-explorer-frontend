@@ -57,6 +57,35 @@ class MainApi {
 
     return this._makeRequest(endpoint, requestOptions);
   }
+
+  addCardLike({ title, explanation, url, date }, token) {
+    const endpoint = "users/me/gallery";
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ title, explanation, url, date }),
+    };
+
+    return this._makeRequest(endpoint, requestOptions);
+  }
+
+  removeCardLike(cardId, token) {
+    const endpoint = `users/me/gallery/${cardId}`;
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    return this._makeRequest(endpoint, requestOptions);
+  }
 }
 
 export const mainApi = new MainApi({

@@ -11,11 +11,13 @@ import { mainApi } from '../../../utils/MainApi';
 import IsLoggedInContext from '../../../contexts/IsLoggedInContext';
 import PhotosContext from '../../../contexts/PhotosContext';
 import IsGalleryLoadingContext from '../../../contexts/IsGalleryLoadingContext';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
 
 function LoginForm() {
   const { setIsLoggedIn } = useContext(IsLoggedInContext);
   const { setMyPhotos } = useContext(PhotosContext);
-  const { isGalleryLoading, setIsGalleryLoading } = useContext(IsGalleryLoadingContext);
+  const { setCurentUser } = useContext(CurrentUserContext);
+  const { setIsGalleryLoading } = useContext(IsGalleryLoadingContext);
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm({mode: "onChange"});
@@ -26,6 +28,16 @@ function LoginForm() {
         setIsLoggedIn(true);
         localStorage.setItem("UserIdentifier", data.token);
         setIsGalleryLoading(true);
+
+        mainApi
+          .getUser(data.token)
+          .then((userObject) => {
+            setCurentUser(userObject);
+            localStorage.setItem("CurrentUser", JSON.stringify(userObject));
+          })
+          .catch((error) => {
+            console.error(error);
+          })
           
         mainApi
           .getUserGallery(data.token)
