@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://space-explorer-backend-x57y.onrender.com";
 
 class MainApi {
   constructor({ makeRequest, headers }) {
