@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import IsLoggedInContext from '../../contexts/IsLoggedInContext.js';
 import PopupContext from '../../contexts/PopupContext.js';
@@ -22,6 +22,12 @@ function AppProviders({children}) {
   const [isLoading, setIsLoading] = useState(false);
   const [IsGalleryLoading, setIsGalleryLoading] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (currentUser?.gallery) {
+      setMyPhotos(currentUser.gallery);
+    }
+  }, [currentUser]);
   
   return (
     <IsLoggedInContext.Provider value={{isLoggedIn, setIsLoggedIn}}>

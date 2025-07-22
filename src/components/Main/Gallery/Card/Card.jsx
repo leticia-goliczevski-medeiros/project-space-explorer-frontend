@@ -32,11 +32,6 @@ function Card({ card }) {
     if (isLiked) {
       const likedPhoto = currentUser.gallery.find(item => item.date === card.date);
 
-      if (!likedPhoto || !likedPhoto._id) {
-        console.error("Erro: foto curtida não tem _id para remover.");
-        return;
-      }
-
       mainApi.removeCardLike(likedPhoto._id, token)
         .then((updatedUser)=> {
           setCurrentUser(updatedUser);

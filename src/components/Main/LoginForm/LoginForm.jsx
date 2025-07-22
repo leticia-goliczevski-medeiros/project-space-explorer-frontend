@@ -16,7 +16,7 @@ import CurrentUserContext from '../../../contexts/CurrentUserContext';
 function LoginForm() {
   const { setIsLoggedIn } = useContext(IsLoggedInContext);
   const { setMyPhotos } = useContext(PhotosContext);
-  const { setCurentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser } = useContext(CurrentUserContext);
   const { setIsGalleryLoading } = useContext(IsGalleryLoadingContext);
   const navigate = useNavigate();
 
@@ -28,21 +28,13 @@ function LoginForm() {
         setIsLoggedIn(true);
         localStorage.setItem("UserIdentifier", data.token);
         setIsGalleryLoading(true);
-
-        mainApi
-          .getUser(data.token)
-          .then((userObject) => {
-            setCurentUser(userObject);
-            localStorage.setItem("CurrentUser", JSON.stringify(userObject));
-          })
-          .catch((error) => {
-            console.error(error);
-          })
           
         mainApi
           .getUserGallery(data.token)
-          .then((user) => {
-            setMyPhotos(user.gallery);
+          .then((userObject) => {
+            setCurrentUser(userObject);
+            localStorage.setItem("CurrentUser", JSON.stringify(userObject));
+            setMyPhotos(userObject.gallery);
           })
           .catch((error) => {
             console.error(error);

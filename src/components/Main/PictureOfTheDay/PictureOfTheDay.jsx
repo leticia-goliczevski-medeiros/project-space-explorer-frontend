@@ -2,20 +2,27 @@ import './PictureOfTheDay.css';
 import { useContext, useState, useEffect } from 'react';
 
 import starIcon from '../../../images/star-icon.png';
+import starIconActive from '../../../images/star-icon-active.png';
 
 import SearchStatus from '../SearchStatus/SearchStatus.jsx';
 
 import IsLoggedInContext from '../../../contexts/IsLoggedInContext';
-import PhotosContext from '../../../contexts/PhotosContext.js'
+import PhotosContext from '../../../contexts/PhotosContext.js';
+import CurrentUserContext from '../../../contexts/CurrentUserContext.js';
 
 import { api } from '../../../utils/APODApi.js';
+import { mainApi } from '../../../utils/MainApi.js';
 
 function PictureOfTheDay() {
   const { isLoggedIn } = useContext(IsLoggedInContext);
-  const { isLoading, setIsLoading } = useContext(PhotosContext);
+  const { isLoading, setIsLoading, setMyPhotos } = useContext(PhotosContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   const [currentPhoto, setCurrentPhoto] = useState(null);
   const [error, setError] = useState(null);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const token = localStorage.getItem('UserIdentifier');
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,8 +33,41 @@ function PictureOfTheDay() {
         console.error(error);
         setError(error);
       })
-      .finally(()=> setIsLoading(false))
+      .finally(() => setIsLoading(false));
   }, [setIsLoading]);
+
+  useEffect(() => {
+    if (currentUser && currentPhoto?.date) {
+      const liked = currentUser.gallery?.some((item) => item.date === currentPhoto.date);
+      setIsLiked(liked);
+    }
+  }, [currentUser, currentPhoto]);
+
+  function handleLike() {
+    if (!currentPhoto) return;
+
+    if (isLiked) {
+      const likedPhoto = currentUser.gallery.find(item => item.date === currentPhoto.date);
+
+      mainApi.removeCardLike(likedPhoto._id, token)
+        .then((updatedUser) => {
+          setCurrentUser(updatedUser);
+          localStorage.setItem("CurrentUser", JSON.stringify(updatedUser));
+          setMyPhotos(updatedUser.gallery);
+          setIsLiked(false);
+        })
+        .catch((error) => console.error(error));
+    } else {
+      mainApi.addCardLike(currentPhoto, token)
+        .then((updatedUser) => {
+          setCurrentUser(updatedUser);
+          localStorage.setItem("CurrentUser", JSON.stringify(updatedUser));
+          setMyPhotos(updatedUser.gallery);
+          setIsLiked(true);
+        })
+        .catch((error) => console.error(error));
+    }
+  }
 
   return (
     <section className="picture-of-the-day">
@@ -42,7 +82,14 @@ function PictureOfTheDay() {
             src={currentPhoto?.url}
             alt={currentPhoto?.title || 'Photo of the day.'}
           />
-          {isLoggedIn && <img className='picture-of-the-day__star-icon' src={starIcon} alt='Star icon.' />}
+          {isLoggedIn && (
+            <img
+              className="picture-of-the-day__star-icon"
+              src={isLiked ? starIconActive : starIcon}
+              alt="Star icon."
+              onClick={handleLike}
+            />
+          )}
           <div className="picture-of-the-day__photo-data">
             <h3 className="picture-of-the-day__photo-title">{currentPhoto?.title || 'Sorry, title not found.'}</h3>
             <p className="picture-of-the-day__photo-paragraph">{currentPhoto?.explanation || 'Description not found.'}</p>
@@ -51,7 +98,7 @@ function PictureOfTheDay() {
         </div>
       )}
     </section>
-  )
+  );
 }
 
 export default PictureOfTheDay;
