@@ -1,5 +1,7 @@
 import './Gallery.css';
+
 import Card from './Card/Card.jsx';
+
 
 function Gallery({array}) {
   return (
@@ -9,7 +11,7 @@ function Gallery({array}) {
       :
         <ul className="gallery__cards">
           {array.map(card=> (
-            <Card card={card} key={card.date}/>
+            <Card card={card} key={card.date}  />
           ))}
         </ul>
       }

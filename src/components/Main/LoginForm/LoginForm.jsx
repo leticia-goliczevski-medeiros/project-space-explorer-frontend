@@ -1,14 +1,53 @@
 import './LoginForm.css';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from "@hookform/error-message";
 import validator from "validator";
 
+import { mainApi } from '../../../utils/MainApi'; 
+
+import IsLoggedInContext from '../../../contexts/IsLoggedInContext';
+import PhotosContext from '../../../contexts/PhotosContext';
+import IsGalleryLoadingContext from '../../../contexts/IsGalleryLoadingContext';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
+
 function LoginForm() {
+  const { setIsLoggedIn } = useContext(IsLoggedInContext);
+  const { setMyPhotos } = useContext(PhotosContext);
+  const { setCurrentUser } = useContext(CurrentUserContext);
+  const { setIsGalleryLoading } = useContext(IsGalleryLoadingContext);
+  const navigate = useNavigate();
+
   const { register, handleSubmit, formState: { errors } } = useForm({mode: "onChange"});
 
-  function onSubmit() {
+  function handleUserLogin({password, email}) {
+    mainApi.login({ password, email })
+      .then((data)=> {
+        setIsLoggedIn(true);
+        localStorage.setItem("UserIdentifier", data.token);
+        setIsGalleryLoading(true);
+          
+        mainApi
+          .getUserGallery(data.token)
+          .then((userObject) => {
+            setCurrentUser(userObject);
+            localStorage.setItem("CurrentUser", JSON.stringify(userObject));
+            setMyPhotos(userObject.gallery);
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+          .finally(()=> setIsGalleryLoading(false));
+      })
+      .catch((error) => console.error(error))
+      .finally(()=> navigate("/mygallery")); 
+  }
+
+  function onSubmit(data) {
+    const {password, email} = data;
+    handleUserLogin({password, email});
   };
 
   return (

@@ -1,3 +1,14 @@
 @import url("./vendor/normalize.css");
 @import url("./vendor/fonts.css");
+@import url("./components/App/App.css");
+@import url("./components/Header/Header.css");
+@import url("./components/Preloader/Preloader.css");
+@import url("./components/Main/Welcome/Welcome.css");
+@import url("./components/Main/PictureOfTheDay/PictureOfTheDay.css");
+@import url("./components/Main/Popup/Popup.css");
+@import url("./components/Main/RegisterForm/RegisterForm.css");
+@import url("./components/Main/LoginForm/LoginForm.css");
+@import url("./components/Main/ExploreForm/ExploreForm.css");
+@import url("./components/Main/SearchStatus/SearchStatus.css");
+@import url("./components/Main/Gallery/Gallery.css");
 @import url("./components/Footer/Footer.css");

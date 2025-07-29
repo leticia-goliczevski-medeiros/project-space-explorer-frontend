@@ -1,14 +1,40 @@
 import './RegisterForm.css';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from "@hookform/error-message";
 import validator from "validator";
 
+import { mainApi } from '../../../utils/MainApi'; 
+
+import RegistrationPopup from '../Popup/RegistrationPopup/RegistrationPopup';
+import RegistrationErrorPopup from '../Popup/RegistrationErrorPopup/RegistrationErrorPopup';
+
+import PopupContext from '../../../contexts/PopupContext';
+
 function RegisterForm() {
+  const { setPopup } = useContext(PopupContext);
   const { register, handleSubmit, formState: { errors } } = useForm({mode: "onChange"});
 
-  function onSubmit() {
+  function handleUserRegister ({password, email}) {
+    mainApi.registerUser({password, email})
+      .then(() => {
+        const registrationPopup = { children: <RegistrationPopup  />};
+
+        setPopup(registrationPopup);
+      })
+      .catch((error) => {
+        console.error(error);
+        const registrationErrorPopup = { children: <RegistrationErrorPopup  />};
+
+        setPopup(registrationErrorPopup);
+      })
+  }
+
+  function onSubmit(data) {
+    const {password, email} = data;
+    handleUserRegister({password, email});
   };
 
   return (
